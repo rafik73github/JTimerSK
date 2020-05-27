@@ -1,0 +1,70 @@
+package pl.timersk;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.LayoutManager;
+import java.awt.Toolkit;
+import java.io.FileNotFoundException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
+
+public class LoginFrame extends JFrame {
+    public LoginFrame() throws FileNotFoundException, SQLException, NoSuchAlgorithmException {
+        super("LOGOWANIE");
+        new Querys();
+        this.setDefaultCloseOperation(3);
+        this.setVisible(true);
+        this.setSize(500, 288);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setLayout((LayoutManager)null);
+        JPanel loginPanel = new JPanel();
+        loginPanel.setBounds(0, 0, 485, 190);
+        loginPanel.setOpaque(true);
+        loginPanel.setBackground(new Color(70, 70, 70));
+        loginPanel.setLayout((LayoutManager)null);
+        this.add(loginPanel);
+        JLabel titleLabel = new JLabel("LOGOWANIE DO BAZY DANYCH", 0);
+        titleLabel.setBounds(0, 0, 485, 60);
+        titleLabel.setFont(new Font("Serif", 1, 20));
+        titleLabel.setForeground(new Color(255, 255, 255));
+        loginPanel.add(titleLabel);
+        JLabel loginLabel = new JLabel("LOGIN:");
+        loginLabel.setBounds(40, 65, 80, 30);
+        loginLabel.setFont(new Font("Serif", 1, 14));
+        loginLabel.setForeground(new Color(255, 110, 0));
+        loginPanel.add(loginLabel);
+        JLabel passLabel = new JLabel("HASŁO:");
+        passLabel.setBounds(40, 120, 80, 30);
+        passLabel.setFont(new Font("Serif", 1, 14));
+        passLabel.setForeground(new Color(255, 110, 0));
+        loginPanel.add(passLabel);
+        JTextArea loginText = new JTextArea();
+        loginText.setBounds(110, 69, 285, 25);
+        loginText.setFont(new Font("Serif", 0, 16));
+        loginPanel.add(loginText);
+        JPasswordField passText = new JPasswordField();
+        passText.setBounds(110, 124, 285, 25);
+        passText.setFont(new Font("Serif", 1, 16));
+        loginPanel.add(passText);
+        JButton logOK = new JButton("ZALOGUJ");
+        logOK.setBounds(0, 190, 243, 60);
+        logOK.setFont(new Font("Serif", 1, 16));
+        logOK.setBackground(new Color(70, 130, 180));
+        logOK.setForeground(new Color(255, 255, 255));
+        this.add(logOK);
+        JButton logCancel = new JButton("CANCEL");
+        logCancel.setBounds(243, 190, 242, 60);
+        logCancel.setFont(new Font("Serif", 1, 16));
+        logCancel.setBackground(new Color(220, 20, 60));
+        logCancel.setForeground(new Color(255, 255, 255));
+        this.add(logCancel);
+    }
+}
