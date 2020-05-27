@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TimerSK:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TimerSK_jar</output-path>
+    <root id="archive" name="TimerSK.jar">
+      <element id="module-output" name="TimerSK" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/6.0.5/mysql-connector-java-6.0.5.jar" path-in-jar="/" />
+      <element id="library" level="project" name="mysql:mysql-connector-java:6.0.5" />
+    </root>
+  </artifact>
+</component>

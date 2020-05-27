@@ -1,7 +1,11 @@
 package pl.timersk;
 
+import sun.misc.IOUtils;
+import sun.security.tools.keytool.Resources;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,6 +13,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ConnJDBC {
 
@@ -18,7 +25,10 @@ public class ConnJDBC {
     ResultSet rs;
 
     public ConnJDBC() throws FileNotFoundException {
-        Scanner scFile = new Scanner(new File("src\\database.txt"));
+       // Scanner scFile = new Scanner(new File("Resource/database.txt"));
+        InputStream template =  ConnJDBC.class.getResourceAsStream("/database.txt");
+        Scanner scFile = new Scanner(template);
+
        mysqlAuth = scFile.nextLine();
         connectionURL = this.mysqlAuth;
         conn = null;
