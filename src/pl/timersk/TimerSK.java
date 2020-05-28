@@ -11,6 +11,7 @@ public class TimerSK {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             new LoginFrame();
+            new MainFrame();
 
         });
     }

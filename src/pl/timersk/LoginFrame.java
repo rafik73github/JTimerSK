@@ -12,6 +12,7 @@ public class LoginFrame extends JFrame {
     public LoginFrame() {
 
        // super("LOGOWANIE");
+        setResizable(false);
         String systemName = (System.getProperty("os.name"));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("LOGOWANIE  na systemie: (" + systemName + ")");
@@ -83,6 +84,7 @@ public class LoginFrame extends JFrame {
         buttonLogCancel.setBackground(new Color(220,20,60));
         buttonLogCancel.setForeground(new Color(255,255,255));
         add(buttonLogCancel);
+
 
         //this code set focus on load window
 /*
