@@ -50,9 +50,12 @@ public class LoginFrame extends JFrame {
         loginPanel.add(passLabel);
 
         JTextArea loginText = new JTextArea();
+        //loginText.requestFocusInWindow();
         loginText.setBounds(110,69,285,25);
         loginText.setFont(new Font(Font.SERIF, Font.PLAIN, 16));
         loginPanel.add(loginText);
+
+
 
         JPasswordField passText = new JPasswordField();
         passText.setBounds(110,124,285,25);
@@ -81,6 +84,80 @@ public class LoginFrame extends JFrame {
         buttonLogCancel.setBackground(new Color(220,20,60));
         buttonLogCancel.setForeground(new Color(255,255,255));
         add(buttonLogCancel);
+
+        //this code set focus on load window
+/*
+        addWindowListener( new WindowAdapter() {
+            public void windowOpened( WindowEvent e ){
+                passText.requestFocus();
+            }
+        });
+*/
+        // this code move focus on TAB press
+        loginText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_TAB) {
+                    if (e.getModifiers() > 0) {
+                        loginText.transferFocusBackward();
+                    } else {
+                        loginText.transferFocus();
+                    }
+                    e.consume();
+                }
+            }
+        });
+
+        passText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buttonLogOK.doClick();
+                    e.consume();
+                }
+            }
+        });
+
+        loginText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buttonLogOK.doClick();
+                    e.consume();
+                }
+            }
+        });
+
+        loginText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    buttonLogCancel.doClick();
+                    e.consume();
+                }
+            }
+        });
+
+        passText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    buttonLogCancel.doClick();
+                    e.consume();
+                }
+            }
+        });
+
+        buttonLogOK.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    buttonLogCancel.doClick();
+                    e.consume();
+                }
+            }
+        });
+
 
         buttonLogOK.addActionListener(new ActionListener() {
 
