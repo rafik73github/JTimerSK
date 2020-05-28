@@ -23,20 +23,22 @@ public class Security {
         }
         return hexString.toString();
     }
-    //TODO Try check user another way, without read login & pass to strings
+
     public boolean userValidated(String userLoginFromForm, char[] userPassFromForm) throws NoSuchAlgorithmException, SQLException {
+        String userPassFromFormSHA256 = hashMeString(new String(userPassFromForm));
 
-        ResultSet checkUserQuery = connLM.connectToDatabase("SELECT * FROM uzytkownicy WHERE nick = '" + userLoginFromForm + "' LIMIT 1");
+        ResultSet checkUserQuery = connLM.connectToDatabase("SELECT * FROM uzytkownicy" +
+                " WHERE nick = '" + userLoginFromForm + "' AND haslo = '" + userPassFromFormSHA256 + "' LIMIT 1");
+
         String[][] aList = (connLM.getMultiArray(checkUserQuery));
-        boolean result = false;
-        if(aList.length != 0) {
-            String userLoginFromQuery = aList[0][2];
-            String userPassFromQuery = aList[0][3];
-            String userPassFromFormSHA256 = hashMeString(new String(userPassFromForm));
 
-            if (userLoginFromForm.equals(userLoginFromQuery) && (userPassFromFormSHA256.equals(userPassFromQuery))) {
-                result = true;
-            }
+        boolean result = false;
+
+        if(aList.length != 0) {
+            //String userLoginFromQuery = aList[0][2];
+            //String userPassFromQuery = aList[0][3];
+             result = true;
+
         }
         return result;
     }
