@@ -11,11 +11,10 @@ public class LoginFrame extends JFrame {
 
     public LoginFrame() {
 
-        super("LOGOWANIE");
-
-
-
+       // super("LOGOWANIE");
+        String systemName = (System.getProperty("os.name"));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("LOGOWANIE  na systemie: (" + systemName + ")");
         setVisible(true);
         //setLocation(700,300);
         setSize(500,288);

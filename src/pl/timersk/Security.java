@@ -35,6 +35,7 @@ public class Security {
         boolean result = false;
 
         if(aList.length != 0) {
+
             //String userLoginFromQuery = aList[0][2];
             //String userPassFromQuery = aList[0][3];
              result = true;
