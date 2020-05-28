@@ -2,6 +2,7 @@
   <dictionary name="rogow">
     <words>
       <w>jdbc</w>
+      <w>monit</w>
       <w>querys</w>
     </words>
   </dictionary>
