@@ -1,3 +1,4 @@
 # Project exclude paths
 /out/
 /src/pl/Resource/database.txt
+/src/pl/Resources/database.txt

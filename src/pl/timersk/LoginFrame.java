@@ -99,7 +99,7 @@ public class LoginFrame extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_TAB) {
-                    if (e.getModifiers() > 0) {
+                    if (e.getModifiersEx() > 0) {
                         loginText.transferFocusBackward();
                     } else {
                         loginText.transferFocus();
