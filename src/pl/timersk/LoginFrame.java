@@ -1,15 +1,20 @@
 package pl.timersk;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class LoginFrame extends JFrame {
     Security sec = new Security();
-
-    public LoginFrame() {
+    InputStream fileStream = LoginFrame.class.getResourceAsStream("/favicon.png");
+    BufferedImage iconImg = ImageIO.read(fileStream);
+    public LoginFrame() throws IOException {
 
        // super("LOGOWANIE");
         setResizable(false);
@@ -21,6 +26,7 @@ public class LoginFrame extends JFrame {
         setSize(500,288);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        setIconImage(iconImg);
         setLayout(null);
 
 
