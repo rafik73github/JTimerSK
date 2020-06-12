@@ -1,23 +1,21 @@
 package pl.timersk;
 
 
+import java.io.IOException;
 import java.sql.*;
-import java.util.Scanner;
-import java.io.InputStream;
 
-public class MySQLConn {
-
-    InputStream fileStream = MySQLConn.class.getResourceAsStream("/database.txt");
-    Scanner openFile = new Scanner(fileStream);
-    String connAuth = openFile.nextLine();
-    String connectionURL = connAuth;
+public class MySQLConn  {
+    Resources resources = new Resources();
 
     Connection conn = null;
     ResultSet rs;
 
+    public MySQLConn() throws IOException {
+    }
+
     public ResultSet connectToDatabase(String query) {
         try {
-            conn = DriverManager.getConnection(connectionURL);
+            conn = DriverManager.getConnection(resources.connectionURL);
             Class.forName("com.mysql.cj.jdbc.Driver");
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(query);

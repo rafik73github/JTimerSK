@@ -11,11 +11,13 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class LoginFrame extends JFrame {
-    Security sec = new Security();
-    InputStream fileStream = LoginFrame.class.getResourceAsStream("/favicon.png");
+    ConnTools sec = new Security();
+    Security sec1 = new Security();
+    InputStream fileStream = LoginFrame.class.getResourceAsStream("/timersala.png");
     BufferedImage iconImg = ImageIO.read(fileStream);
-    public LoginFrame() throws IOException {
 
+    public LoginFrame() throws IOException {
+sec.showName();
        // super("LOGOWANIE");
         setResizable(false);
         String systemName = (System.getProperty("os.name"));
@@ -112,32 +114,12 @@ public class LoginFrame extends JFrame {
                     }
                     e.consume();
                 }
-            }
-        });
 
-        passText.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     buttonLogOK.doClick();
                     e.consume();
                 }
-            }
-        });
 
-        loginText.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    buttonLogOK.doClick();
-                    e.consume();
-                }
-            }
-        });
-
-        loginText.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     buttonLogCancel.doClick();
                     e.consume();
@@ -148,12 +130,19 @@ public class LoginFrame extends JFrame {
         passText.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buttonLogOK.doClick();
+                    e.consume();
+                }
+
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     buttonLogCancel.doClick();
                     e.consume();
                 }
+
             }
         });
+
 
         buttonLogOK.addKeyListener(new KeyAdapter() {
             @Override
@@ -209,6 +198,8 @@ public class LoginFrame extends JFrame {
             }
         });
 
+        buttonLogCancel.addActionListener(e -> System.exit(0));
+/*
         buttonLogCancel.addActionListener(new ActionListener() {
 
             @Override
@@ -216,6 +207,6 @@ public class LoginFrame extends JFrame {
                 System.exit(0);
             }
         });
-
+*/
     }
 }

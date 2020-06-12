@@ -1,5 +1,7 @@
 package pl.timersk;
 
+import java.awt.*;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -8,11 +10,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class Security {
+public class Security extends MySQLConn implements ConnTools{
 
-    MySQLConn connLM = new MySQLConn();
+  // ConnTools makeConn = new MySQLConn();
 
-   public String hashMeString(String str) throws NoSuchAlgorithmException {
+      Color buttonNormal = new Color(54, 90, 112);
+
+    public Security() throws IOException {
+    }
+
+    public String hashMeString(String str) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(str.getBytes(StandardCharsets.UTF_8));
 
@@ -27,10 +34,10 @@ public class Security {
     public boolean userValidated(String userLoginFromForm, char[] userPassFromForm) throws NoSuchAlgorithmException, SQLException {
         String userPassFromFormSHA256 = hashMeString(new String(userPassFromForm));
 
-        ResultSet checkUserQuery = connLM.connectToDatabase("SELECT * FROM uzytkownicy" +
+        ResultSet checkUserQuery = connectToDatabase("SELECT * FROM uzytkownicy" +
                 " WHERE nick = '" + userLoginFromForm + "' AND haslo = '" + userPassFromFormSHA256 + "' LIMIT 1");
 
-        String[][] aList = (connLM.getMultiArray(checkUserQuery));
+        String[][] aList = (getMultiArray(checkUserQuery));
 
         boolean result = false;
 

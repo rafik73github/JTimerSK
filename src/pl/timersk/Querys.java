@@ -1,5 +1,6 @@
 package pl.timersk;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,7 +10,7 @@ public class Querys {
     public MySQLConn connLM = new MySQLConn();
        String[][] fromMySql;
 
-    public Querys() throws SQLException {
+    public Querys() throws SQLException, IOException {
 
     }
     public ResultSet events = connLM.connectToDatabase("SELECT * FROM tytul_lekcji");

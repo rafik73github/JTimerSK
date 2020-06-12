@@ -1,24 +1,34 @@
 package pl.timersk;
 
+
 import java.awt.EventQueue;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.Arrays;
+
 
 public class TimerSK {
+   static ParseJSON pj;
+
+    static {
+        try {
+            pj = new ParseJSON();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public TimerSK() {
     }
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                new LoginFrame();
+                new TimerFrame();
+             // System.out.println(Arrays.deepToString(pj.meetingArray()));
+           // pj.showJSON();
+
             } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //  new XML().createXML();
-            try {
-                new MainFrame();
-            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
 

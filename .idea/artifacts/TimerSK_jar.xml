@@ -4,7 +4,8 @@
     <root id="archive" name="TimerSK.jar">
       <element id="module-output" name="TimerSK" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/6.0.5/mysql-connector-java-6.0.5.jar" path-in-jar="/" />
-      <element id="library" level="project" name="mysql:mysql-connector-java:6.0.5" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/pl/lib/json-20200518.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

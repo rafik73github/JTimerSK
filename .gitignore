@@ -2,3 +2,5 @@
 /out/
 /src/pl/Resource/database.txt
 /src/pl/Resources/database.txt
+/src/pl/Resource/meetingJSONURL.txt
+/src/pl/Resource/results.json

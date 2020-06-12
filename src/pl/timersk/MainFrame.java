@@ -3,20 +3,18 @@ package pl.timersk;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
-    Querys que = new Querys();
-    InputStream fileStream = LoginFrame.class.getResourceAsStream("/favicon.png");
-    BufferedImage iconImg = ImageIO.read(fileStream);
+     BufferedImage iconImg = ImageIO.read(MainFrame.class.getResourceAsStream("/timersala.png"));
     //String[] y = que.cNames;
     String[] y = {"LP", "NUMER LEKCJI", "NAZWA LEKCJI"};
-    String[][] x = que.aList;
+    String[][] x = new Querys().aList;
+
     public MainFrame() throws SQLException, IOException {
 
         setResizable(true);
@@ -53,6 +51,15 @@ public class MainFrame extends JFrame {
 
         tb.removeColumn(tb.getColumnModel().getColumn(0));
 
+        TableColumn column ;
+        for (int i = 0; i < 2; i++) {
+            column = tb.getColumnModel().getColumn(i);
+            if (i == 1) {
+                column.setPreferredWidth(300); //third column is bigger
+            } else {
+                column.setPreferredWidth(100);
+            }
+        }
 
 
         JPanel pan = new JPanel();
