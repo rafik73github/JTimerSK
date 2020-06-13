@@ -26,7 +26,7 @@ public class CenterPanel extends JPanel {
     public CenterPanel() throws IOException {
         setLayout(null);
         setOpaque(true);
-        setBounds(0, 40, 350, 160);
+        setBounds(0, 40, 360, 160);
         setBackground(Color.WHITE);
 
         timeToDisplay = parseJSON.meetingArray();
@@ -45,7 +45,7 @@ public class CenterPanel extends JPanel {
             JPanel timerDigitPanel = new JPanel();
             timerDigitPanel.setLayout(null);
             timerDigitPanel.setOpaque(true);
-            timerDigitPanel.setBounds(10, 11, 280, 90);
+            timerDigitPanel.setBounds(10, 11, 290, 90);
             timerDigitPanel.setBackground(new Color(5, 5, 5));
             add(timerDigitPanel);
 
@@ -70,7 +70,7 @@ public class CenterPanel extends JPanel {
             String dateString = String.format(zeroM + "%d:" + zeroS + "%d", m, s);
             JLabel bigDigits = new JLabel(dateString, SwingConstants.CENTER);
             bigDigits.setOpaque(true);
-            bigDigits.setBounds(10, 10, 260, 70);
+            bigDigits.setBounds(10, 10, 270, 70);
             bigDigits.setBackground(null);
             bigDigits.setForeground(col.bigDigitsColorGreen);
             bigDigits.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 82));
@@ -79,7 +79,7 @@ public class CenterPanel extends JPanel {
             JButton plusMinuteButton = new JButton(resources.plusIcon);
             plusMinuteButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 36));
             plusMinuteButton.setOpaque(true);
-            plusMinuteButton.setBounds(295, 11, 44, 44);
+            plusMinuteButton.setBounds(305, 11, 44, 44);
             plusMinuteButton.setBackground(col.buttonNormal);
             plusMinuteButton.setForeground(col.buttonFont);
             plusMinuteButton.setBorder(BorderFactory.createLineBorder(col.buttonNormal, 1));
@@ -90,7 +90,7 @@ public class CenterPanel extends JPanel {
             JButton minusMinuteButton = new JButton(resources.minusIcon);
             minusMinuteButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 36));
             minusMinuteButton.setOpaque(true);
-            minusMinuteButton.setBounds(295, 57, 44, 44);
+            minusMinuteButton.setBounds(305, 57, 44, 44);
             minusMinuteButton.setBackground(col.buttonNormal);
             minusMinuteButton.setForeground(col.buttonFont);
             minusMinuteButton.setBorder(BorderFactory.createLineBorder(col.buttonNormal, 1));
@@ -101,7 +101,7 @@ public class CenterPanel extends JPanel {
             JButton nextPointButton = new JButton(resources.forwardIcon);
             nextPointButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 36));
             nextPointButton.setOpaque(true);
-            nextPointButton.setBounds(295, 106, 44, 44);
+            nextPointButton.setBounds(305, 106, 44, 44);
             nextPointButton.setBackground(col.buttonNormal);
             nextPointButton.setForeground(col.buttonFont);
             nextPointButton.setBorder(BorderFactory.createLineBorder(col.buttonNormal, 1));
@@ -111,7 +111,7 @@ public class CenterPanel extends JPanel {
 
             JButton startPointButton = new JButton(resources.playIcon);
             startPointButton.setOpaque(true);
-            startPointButton.setBounds(10, 106, 280, 44);
+            startPointButton.setBounds(10, 106, 290, 44);
             startPointButton.setBackground(col.buttonNormal);
             startPointButton.setForeground(col.buttonFont);
             startPointButton.setBorder(BorderFactory.createLineBorder(col.buttonNormal, 1));
@@ -123,7 +123,7 @@ public class CenterPanel extends JPanel {
             JButton stopPointButton = new JButton(resources.stopIcon);
             stopPointButton.setVisible(false);
             stopPointButton.setOpaque(true);
-            stopPointButton.setBounds(10, 106, 280, 44);
+            stopPointButton.setBounds(10, 106, 290, 44);
             stopPointButton.setBackground(col.buttonRed);
             stopPointButton.setForeground(col.buttonFont);
             stopPointButton.setBorder(BorderFactory.createLineBorder(col.buttonRed, 1, true));

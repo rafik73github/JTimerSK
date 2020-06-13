@@ -9,7 +9,7 @@ public class BottomPanel extends JPanel {
 
         setLayout(null);
         setOpaque(true);
-        setBounds(0,200,350,40);
+        setBounds(0,200,360,40);
         setBackground(col.buttonFont);
 
     }

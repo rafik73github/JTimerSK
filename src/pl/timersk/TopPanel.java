@@ -16,7 +16,7 @@ public class TopPanel extends JPanel {
 
         setLayout(null);
         setOpaque(true);
-        setBounds(0,0,350,40);
+        setBounds(0,0,360,40);
         setBackground(col.buttonNormal);
 
         tf = new JLabel();

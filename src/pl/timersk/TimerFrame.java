@@ -17,7 +17,7 @@ public class TimerFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("TimerSK");
-        setSize(365,280);
+        setSize(365,270);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setIconImage(iconImg);
