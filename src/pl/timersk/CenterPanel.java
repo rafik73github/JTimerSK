@@ -203,7 +203,6 @@ public class CenterPanel extends JPanel {
                     TopPanel.tf.setText(String.valueOf(timeToDisplay[timeToDisplayColumn][2]));
                 }
 
-                System.out.println(len + " - " + timeToDisplayColumn);
             });
 
             nextPointButton.addActionListener(e -> {
@@ -215,6 +214,44 @@ public class CenterPanel extends JPanel {
                     bigDigits.setText(zeroAdd());
                     bigDigits.setForeground(Colors.BIG_DIGITS_COLOR_GREEN);
                     TopPanel.tf.setText(String.valueOf(timeToDisplay[timeToDisplayColumn][2]));
+                }
+            });
+
+            minusMinuteButton.addActionListener(e -> {
+
+                if(m > 1) {
+                    m--;
+                    if (m > 9) {
+                        zeroM = "";
+                    } else {
+                        zeroM = "0";
+                    }
+                    if (s > 9) {
+                        zeroS = "";
+                    } else {
+                        zeroS = "0";
+                    }
+                    String dateString1 = String.format(zeroM + "%d:" + zeroS + "%d", m, s);
+                    bigDigits.setText(dateString1);
+                }
+            });
+
+            plusMinuteButton.addActionListener(e -> {
+
+                if(m <= 59) {
+                    m++;
+                    if (m > 9) {
+                        zeroM = "";
+                    } else {
+                        zeroM = "0";
+                    }
+                    if (s > 9) {
+                        zeroS = "";
+                    } else {
+                        zeroS = "0";
+                    }
+                    String dateString1 = String.format(zeroM + "%d:" + zeroS + "%d", m, s);
+                    bigDigits.setText(dateString1);
                 }
             });
         }
