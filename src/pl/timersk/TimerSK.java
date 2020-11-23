@@ -1,18 +1,17 @@
 package pl.timersk;
 
 
-import java.awt.EventQueue;
-import java.io.IOException;
-import java.util.Arrays;
+import java.awt.*;
 
 
 public class TimerSK {
+
    static ParseJSON pj;
 
     static {
         try {
             pj = new ParseJSON();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -22,13 +21,12 @@ public class TimerSK {
     }
 
     public static void main(String[] args) {
+
         EventQueue.invokeLater(() -> {
             try {
                 new TimerFrame();
-             // System.out.println(Arrays.deepToString(pj.meetingArray()));
-           // pj.showJSON();
 
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

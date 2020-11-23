@@ -1,26 +1,22 @@
 package pl.timersk;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 
 
 public class TimerFrame extends JFrame {
 
-    BufferedImage iconImg = ImageIO.read(MainFrame.class.getResourceAsStream("/timersala.png"));
 
-    public TimerFrame() throws IOException {
+    public TimerFrame() throws Exception {
 
         //setUndecorated(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("TimerSK");
-        setSize(365,270);
+        setSize(375,270);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        setIconImage(iconImg);
+        setIconImage(Resources.ICON_IMG);
         setLayout(null);
         setVisible(true);
 
