@@ -3,6 +3,7 @@ package pl.timersk;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 
 
 public class CenterPanel extends JPanel {
@@ -14,17 +15,19 @@ public class CenterPanel extends JPanel {
     private int timeToDisplayColumn = 0;
     private int timerCountDown = 0;
 
-     final Object[][] timeToDisplay;
+     final Map<Integer,Meetings> timeToDisplay;
 
 
     PanelsTools panelTool = new PanelsTools();
 
 
     public CenterPanel() throws Exception {
+
         setLayout(null);
         setOpaque(true);
         setBounds(0, 40, 360, 160);
         setBackground(Color.WHITE);
+
 
         timeToDisplay = parseJSON.meetingArray();
 
@@ -39,8 +42,8 @@ public class CenterPanel extends JPanel {
         }
 
 
-        else if(timeToDisplay[0][0].equals(0) && timeToDisplay[0][1].equals(0)){
-            JLabel eventText = new JLabel((String) timeToDisplay[0][2], SwingConstants.CENTER);
+        else if(timeToDisplay.get(0).getPointTime() == 0){
+            JLabel eventText = new JLabel(timeToDisplay.get(0).getPointTitle(), SwingConstants.CENTER);
             eventText.setOpaque(true);
             eventText.setBounds(0, 10, 350, 70);
             eventText.setBackground(null);
@@ -58,11 +61,11 @@ public class CenterPanel extends JPanel {
             timerDigitPanel.setBackground(new Color(5, 5, 5));
             add(timerDigitPanel);
 
-            String g = String.valueOf(timeToDisplay[timeToDisplayColumn][2]);
+            String g = String.valueOf(timeToDisplay.get(timeToDisplayColumn).getPointTitle());
             TopPanel.tf.setText(g);
 
-            m = (int) timeToDisplay[timeToDisplayColumn][0];
-            s = (int) timeToDisplay[timeToDisplayColumn][1];
+            m = timeToDisplay.get(timeToDisplayColumn).getPointTime();
+            s = 0;
 
             zeroS = "0";
             zeroM = "0";
@@ -71,12 +74,9 @@ public class CenterPanel extends JPanel {
             } else {
                 zeroM = "0";
             }
-            if (s > 9) {
-                zeroS = "";
-            } else {
-                zeroS = "0";
-            }
+            zeroS = "0";
             String dateString = String.format(zeroM + "%d:" + zeroS + "%d", m, s);
+
             JLabel bigDigits = new JLabel(dateString, SwingConstants.CENTER);
             bigDigits.setOpaque(true);
             bigDigits.setBounds(10, 10, 270, 70);
@@ -193,27 +193,27 @@ public class CenterPanel extends JPanel {
                 panelTool.buttonHoverSet(plusMinuteButton, Colors.BUTTON_NORMAL, Colors.BUTTON_NORMAL_HOVER, Colors.BUTTON_DISABLED, true);
                 panelTool.buttonHoverSet(nextPointButton, Colors.BUTTON_NORMAL, Colors.BUTTON_NORMAL_HOVER, Colors.BUTTON_DISABLED, true);
                 timerCountDown = 0;
-                int len = timeToDisplay.length;
+                int len = timeToDisplay.size();
 
                 timeToDisplayColumn++;
 
                 if (timeToDisplayColumn < len) {
                     bigDigits.setText(zeroAdd());
                     bigDigits.setForeground(Colors.BIG_DIGITS_COLOR_GREEN);
-                    TopPanel.tf.setText(String.valueOf(timeToDisplay[timeToDisplayColumn][2]));
+                    TopPanel.tf.setText(String.valueOf(timeToDisplay.get(timeToDisplayColumn).getPointTitle()));
                 }
 
             });
 
             nextPointButton.addActionListener(e -> {
-                int len = timeToDisplay.length;
+                int len = timeToDisplay.size();
                 timeToDisplayColumn++;
 
                 if (timeToDisplayColumn < len) {
 
                     bigDigits.setText(zeroAdd());
                     bigDigits.setForeground(Colors.BIG_DIGITS_COLOR_GREEN);
-                    TopPanel.tf.setText(String.valueOf(timeToDisplay[timeToDisplayColumn][2]));
+                    TopPanel.tf.setText(String.valueOf(timeToDisplay.get(timeToDisplayColumn).getPointTitle()));
                 }
             });
 
@@ -258,11 +258,11 @@ public class CenterPanel extends JPanel {
     }  //class
 
     public String zeroAdd(){
-        m = (int)timeToDisplay[timeToDisplayColumn][0];
-        s = (int)timeToDisplay[timeToDisplayColumn][1];
+        m = timeToDisplay.get(timeToDisplayColumn).getPointTime();
+        s = 0;
 
         if(m>9){zeroM = "";}else{zeroM = "0";}
-        if(s>9){zeroS = "";}else{zeroS = "0";}
+        zeroS = "0";
 
         return String.format(zeroM+"%d:"+zeroS+"%d",m,s);
     }

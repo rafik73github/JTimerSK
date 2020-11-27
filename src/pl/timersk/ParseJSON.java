@@ -8,8 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 public class ParseJSON {
 
@@ -36,7 +35,7 @@ public class ParseJSON {
         String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(dateNow);
 
         JSONObject toSend = new JSONObject();
-        toSend.put("token","Rafaello73" + modifiedDate);
+        toSend.put("token",new Security().hashMeString("Rafaello73" + modifiedDate));
 
         objectJSON = new JSONObject(hh.sendPost(URLS.URL_MEETINGS,toSend));
 
@@ -44,9 +43,10 @@ public class ParseJSON {
 
         String date = objectJSON.getJSONObject("options").getString("date");
          dataErr = objectJSON.getJSONObject("options").getBoolean("dataErr");
+         //dataErr = false;
          circuitVisit = objectJSON.getJSONObject("options").getBoolean("circuitVisit");
          event = objectJSON.getJSONObject("options").getString("event");
-         //event = "Kongres";
+
         sundayEvent = objectJSON.getJSONObject("options").getString("sundayEvent");
 
         openingComments = objectJSON.getJSONObject("meeting").getInt("openingComments");
@@ -54,7 +54,6 @@ public class ParseJSON {
         diggingForSpiritualGems = objectJSON.getJSONObject("meeting").getInt("diggingForSpiritualGems");
 
         livingOption = objectJSON.getJSONObject("meeting").getInt("livingPartTwoPoint");
-        //livingOption = 0;
 
         livingPart1 = objectJSON.getJSONObject("meeting").getInt("livingPart1");
         livingPart2 = objectJSON.getJSONObject("meeting").getInt("livingPart2");
@@ -64,130 +63,113 @@ public class ParseJSON {
     }
 
     /**
-     * Multi array with meeting data
-     * @return multi array with meeting data
+     *
+     * @return sorted meeting list
      */
-    public Object[][] meetingArray(){
-
-        Object[][] result = {};
-
+    Map<Integer, Meetings> meetingArray(){
+        Map<Integer, Meetings> result = new TreeMap<>();
+        int id = 0;
         if(success == 1) {
 
             if (!dataErr) {
                 if (checkIfWeekend()) {
                     if (!sundayEvent.equals("")) {
-                        result = new Object[1][3];
-                        result[0][0] = 0;
-                        result[0][1] = 0;
-                        result[0][2] = sundayEvent;
+
+                        result.put(id, new Meetings(sundayEvent, 0));
+
+
                     } else {
-                        result = new Object[4][3];
+
                         if (circuitVisit) {
-                            result[0][0] = 30;
-                            result[0][1] = 0;
-                            result[0][2] = "Wykład publiczny";
+                            result.put(id, new Meetings("Wykład publiczny" ,30));
 
-                            result[1][0] = 30;
-                            result[1][1] = 0;
-                            result[1][2] = "Studium Strażnicy";
+                            id++;
+                            result.put(id, new Meetings("Studium Strażnicy" ,30));
 
-                            result[2][0] = 30;
-                            result[2][1] = 0;
-                            result[2][2] = "Przemówienie nadzorcy obwodu";
+                            id++;
+                            result.put(id, new Meetings("Przemówienie nadzorcy obwodu" ,30));
 
-                            result[3][0] = 7;
-                            result[3][1] = 0;
-                            result[3][2] = "Zbiórka do służby";
+                            id++;
+                            result.put(id, new Meetings("Zbiórka do służby" ,7));
+
                         } else {
 
-                            result = new Object[3][3];
+                            result.put(id, new Meetings("Wykład publiczny" ,30));
 
-                            result[0][0] = 30;
-                            result[0][1] = 0;
-                            result[0][2] = "Wykład publiczny";
+                            id++;
+                            result.put(id, new Meetings("Studium Strażnicy" ,60));
 
-                            result[1][0] = 60;
-                            result[1][1] = 0;
-                            result[1][2] = "Studium Strażnicy";
+                            id++;
+                            result.put(id, new Meetings("Zbiórka do służby" ,7));
 
-                            result[2][0] = 7;
-                            result[2][1] = 0;
-                            result[2][2] = "Zbiórka do służby";
                         }
                     }//here
                 } else {
                     //from here
                     if (!event.equals("")) {
-                        result = new Object[1][3];
-                        result[0][0] = 0;
-                        result[0][1] = 0;
-                        result[0][2] = event;
+
+
+                        result.put(id, new Meetings(event ,0));
+
+
                     } else {
+
+
+                        result.put(id, new Meetings("Uwagi wstępne" ,openingComments));
+
+                        id++;
+                        result.put(id, new Meetings("Skarby ze Słowa Bożego" ,treasuresTalk));
+
+                        id++;
+                        result.put(id, new Meetings("Wyszukiwanie duchowych skarbów" ,diggingForSpiritualGems));
 
                         JSONArray arr = objectJSON.getJSONArray("tssk");
                         int len = arr.length();
-                        int recordLength = 6 + len + livingOption;
-                        result = new Object[recordLength][3];
+                        for (int i = 0; i < len; i++) {
+                            id++;
+                            result.put(id, new Meetings(arr.getJSONObject(i).getString("pointName") ,arr.getJSONObject(i).getInt("pointTime")));
 
-                        result[0][0] = openingComments;
-                        result[0][1] = 0;
-                        result[0][2] = "Uwagi wstępne";
-
-                        result[1][0] = treasuresTalk;
-                        result[1][1] = 0;
-                        result[1][2] = "Skarby ze Słowa Bożego";
-
-                        result[2][0] = diggingForSpiritualGems;
-                        result[2][1] = 0;
-                        result[2][2] = "Wyszukiwanie duchowych skarbów";
-
-                        int j = 0;
-                        for (int i = 3; i < len + 3; i++) {
-
-                            result[i][0] = arr.getJSONObject(j).getInt("pointTime");
-                            result[i][1] = 0;
-                            result[i][2] = arr.getJSONObject(j).getString("pointName");
-                            j++;
                         }
 
-                        result[len + 3][0] = livingPart1;
-                        result[len + 3][1] = 0;
-                        result[len + 3][2] = "Chrześcijański tryb życia, cz. 1";
+                        id++;
+                        result.put(id, new Meetings("Chrześcijański tryb życia, cz. 1" ,livingPart1));
+
                         if (livingOption == 1) {
-                            result[len + 4][0] = livingPart2;
-                            result[len + 4][1] = 0;
-                            result[len + 4][2] = "Chrześcijański tryb życia, cz. 2";
-                        }
-                        if (circuitVisit) {
-                            result[len + 4 + livingOption][0] = concludingComments;
-                            result[len + 4 + livingOption][1] = 0;
-                            result[len + 4 + livingOption][2] = "Powtórka i zapowiedź następnego zebrania";
+                            id++;
+                            result.put(id, new Meetings("Chrześcijański tryb życia, cz. 2" ,livingPart2));
 
-                            result[len + 5 + livingOption][0] = 30;
-                            result[len + 5 + livingOption][1] = 0;
-                            result[len + 5 + livingOption][2] = "Przemówienie nadzorcy obwodu";
+                           }
+                        if (circuitVisit) {
+                            id++;
+                            result.put(id, new Meetings("Powtórka i zapowiedź następnego zebrania" ,concludingComments));
+
+                            id++;
+                            result.put(id, new Meetings("Przemówienie nadzorcy obwodu" ,30));
 
                         } else {
-                            result[len + 4 + livingOption][0] = congregationBibleStudy;
-                            result[len + 4 + livingOption][1] = 0;
-                            result[len + 4 + livingOption][2] = "Zborowe studium Biblii";
+                            id++;
+                            result.put(id, new Meetings("Zborowe studium Biblii" ,congregationBibleStudy));
 
-                            result[len + 5 + livingOption][0] = concludingComments;
-                            result[len + 5 + livingOption][1] = 0;
-                            result[len + 5 + livingOption][2] = "Powtórka i zapowiedź następnego zebrania";
-                        }
+                            id++;
+                            result.put(id, new Meetings("Powtórka i zapowiedź następnego zebrania" ,concludingComments));
+
+                       }
                     }
                     // to here
                 }
 
             }  // dataErr
-
+else{
+    result = null;
+            }
         }
         else{
             result = null;
         }
         return result;
+
     }
+
 
 
     /**
