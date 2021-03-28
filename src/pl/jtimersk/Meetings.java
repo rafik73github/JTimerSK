@@ -1,4 +1,4 @@
-package pl.timersk;
+package pl.jtimersk;
 
 public class Meetings {
 

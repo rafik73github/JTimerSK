@@ -1,8 +1,7 @@
-package pl.timersk;
+package pl.jtimersk;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class TopPanel extends JPanel {
 

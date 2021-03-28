@@ -1,9 +1,10 @@
-package pl.timersk;
+package pl.jtimersk;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class Resources {
@@ -13,7 +14,7 @@ public class Resources {
 
     static {
         try {
-            PLAY_ICON = new ImageIcon(ImageIO.read(Resources.class.getResourceAsStream("/play_36x36.png")));
+            PLAY_ICON = new ImageIcon(ImageIO.read(Objects.requireNonNull(Resources.class.getResourceAsStream("/play_36x36.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -23,7 +24,7 @@ public class Resources {
 
     static {
         try {
-            STOP_ICON = new ImageIcon(ImageIO.read(Resources.class.getResourceAsStream("/stop_36x36.png")));
+            STOP_ICON = new ImageIcon(ImageIO.read(Objects.requireNonNull(Resources.class.getResourceAsStream("/stop_36x36.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,7 +34,7 @@ public class Resources {
 
     static {
         try {
-            FORWARD_ICON = new ImageIcon(ImageIO.read(Resources.class.getResourceAsStream("/forward_36x36.png")));
+            FORWARD_ICON = new ImageIcon(ImageIO.read(Objects.requireNonNull(Resources.class.getResourceAsStream("/forward_36x36.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,7 +44,7 @@ public class Resources {
 
     static {
         try {
-            PLUS_ICON = new ImageIcon(ImageIO.read(Resources.class.getResourceAsStream("/plus_24x24.png")));
+            PLUS_ICON = new ImageIcon(ImageIO.read(Objects.requireNonNull(Resources.class.getResourceAsStream("/plus_24x24.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +54,7 @@ public class Resources {
 
     static {
         try {
-            MINUS_ICON = new ImageIcon(ImageIO.read(Resources.class.getResourceAsStream("/minus_24x24.png")));
+            MINUS_ICON = new ImageIcon(ImageIO.read(Objects.requireNonNull(Resources.class.getResourceAsStream("/minus_24x24.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +64,7 @@ public class Resources {
 
     static {
         try {
-            ICON_IMG = ImageIO.read(TimerFrame.class.getResourceAsStream("/timersala.png"));
+            ICON_IMG = ImageIO.read(Objects.requireNonNull(TimerFrame.class.getResourceAsStream("/timersala.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }

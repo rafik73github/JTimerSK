@@ -1,4 +1,4 @@
-package pl.timersk;
+package pl.jtimersk;
 
 
 import javax.swing.*;

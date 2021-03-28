@@ -1,10 +1,9 @@
-package pl.timersk;
+package pl.jtimersk;
 
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -27,23 +26,24 @@ public class ParseJSON {
     private final int congregationBibleStudy;
     private final int concludingComments;
 
+
+
     HttpHandler hh = new HttpHandler();
 
 
     public ParseJSON() throws Exception {
-        Date dateNow = new Date();
-        String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(dateNow);
 
         JSONObject toSend = new JSONObject();
-        toSend.put("token",new Security().hashMeString("Rafaello73" + modifiedDate));
 
+        toSend.put("token",new PreferencesTools().getPreference("CodeName"));
+        new PreferencesTools().setPreference("CodeName","");
         objectJSON = new JSONObject(hh.sendPost(URLS.URL_MEETINGS,toSend));
 
         success = objectJSON.getInt("success");
 
         String date = objectJSON.getJSONObject("options").getString("date");
          dataErr = objectJSON.getJSONObject("options").getBoolean("dataErr");
-         //dataErr = false;
+
          circuitVisit = objectJSON.getJSONObject("options").getBoolean("circuitVisit");
          event = objectJSON.getJSONObject("options").getString("event");
 

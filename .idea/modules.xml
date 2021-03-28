@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TimerSK.iml" filepath="$PROJECT_DIR$/TimerSK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JTimerSK.iml" filepath="$PROJECT_DIR$/JTimerSK.iml" />
     </modules>
   </component>
 </project>

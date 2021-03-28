@@ -2,7 +2,7 @@
   <artifact type="jar" name="TimerSK:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/TimerSK_jar</output-path>
     <root id="archive" name="TimerSK.jar">
-      <element id="module-output" name="TimerSK" />
+      <element id="module-output" name="JTimerSK" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/6.0.5/mysql-connector-java-6.0.5.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/src/pl/lib/json-20200518.jar" path-in-jar="/" />
